@@ -47,6 +47,12 @@ export async function POST(request: NextRequest) {
       <hr>
       <p><em>Sent from Expo Icon Generator Feedback System</em></p>
       <p><em>Timestamp: ${new Date().toISOString()}</em></p>
+      <hr>
+      <p style="font-size: 12px; color: #555;">
+        Need to turn messy bug reports into clean GitHub issues? Try
+        <a href="https://glitchgrab.dev/" style="color: #0ea5e9; text-decoration: none; font-weight: 600;">Glitchgrab</a>
+        — AI-powered bug tracking for Next.js teams.
+      </p>
     `;
 
         // Send email
