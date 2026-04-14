@@ -65,6 +65,35 @@ export async function POST(request: NextRequest) {
 
         await transporter.sendMail(mailOptions);
 
+        // If user provided email, send them a Glitchgrab waitlist invitation
+        if (userEmail && userEmail.trim().length > 0) {
+            const waitlistEmailBody = `
+      <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto; color: #111;">
+        <h2 style="color: #0ea5e9;">Join the Glitchgrab Waitlist 🐛</h2>
+        <p>Thanks for using Expo Icon Generator! We wanted to let you know about <strong>Glitchgrab</strong> — our AI-powered bug tracking tool built for Next.js teams.</p>
+        <p><strong>What Glitchgrab does:</strong></p>
+        <ul>
+          <li>Turns screenshots &amp; messy bug reports into clean GitHub issues with AI</li>
+          <li>Automatically extracts steps to reproduce, environment info, and severity</li>
+          <li>Integrates directly with your GitHub repos</li>
+        </ul>
+        <p style="margin: 24px 0;">
+          <a href="https://glitchgrab.dev/" style="background-color: #0ea5e9; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600;">Join the Waitlist</a>
+        </p>
+        <p style="font-size: 12px; color: #888;">You received this because you provided your email when submitting feedback on Expo Icon Generator. We won&apos;t spam you.</p>
+      </div>
+    `;
+
+            const waitlistMailOptions = {
+                from: process.env.NEXT_GMAIL_USER,
+                to: userEmail.trim(),
+                subject: 'Join the Glitchgrab waitlist — AI bug tracking for Next.js teams',
+                html: waitlistEmailBody,
+            };
+
+            await transporter.sendMail(waitlistMailOptions);
+        }
+
         return NextResponse.json({
             success: true,
             message: 'Feedback sent successfully! Thank you for helping us improve.'

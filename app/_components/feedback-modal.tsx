@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { MessageSquare, Check, Bug, ArrowUpRight } from "lucide-react";
+import { Check, Bug, ArrowUpRight } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 interface FeedbackModalProps {
@@ -24,6 +25,7 @@ type Rating = "love_it" | "good" | "okay" | "bad";
 
 interface FeedbackData {
   feedback: string;
+  userEmail: string;
   downloadType: string;
   rating?: Rating;
 }
@@ -55,8 +57,8 @@ export default function FeedbackModal({
   downloadType,
 }: FeedbackModalProps) {
   const [feedback, setFeedback] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const [selectedRating, setSelectedRating] = useState<Rating | null>(null);
-  const [showComment, setShowComment] = useState(false);
   const router = useRouter();
 
   const feedbackMutation = useMutation({
@@ -75,8 +77,8 @@ export default function FeedbackModal({
   useEffect(() => {
     if (!isOpen) {
       setFeedback("");
+      setUserEmail("");
       setSelectedRating(null);
-      setShowComment(false);
       feedbackMutation.reset();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -84,31 +86,23 @@ export default function FeedbackModal({
 
   const resetAndClose = () => {
     setFeedback("");
+    setUserEmail("");
     setSelectedRating(null);
-    setShowComment(false);
     feedbackMutation.reset();
     onClose();
   };
 
   const handleReactionClick = (rating: Rating) => {
     if (feedbackMutation.isPending || feedbackMutation.isSuccess) return;
-
     setSelectedRating(rating);
-
-    if (!showComment) {
-      feedbackMutation.mutate({
-        feedback: "",
-        downloadType,
-        rating,
-      });
-    }
   };
 
-  const handleSubmitWithComment = () => {
+  const handleSubmit = () => {
     if (!selectedRating || feedbackMutation.isPending) return;
 
     feedbackMutation.mutate({
       feedback: feedback.trim(),
+      userEmail: userEmail.trim(),
       downloadType,
       rating: selectedRating,
     });
@@ -180,26 +174,42 @@ export default function FeedbackModal({
               ))}
             </div>
 
-            {!showComment ? (
-              <button
-                type="button"
-                onClick={() => setShowComment(true)}
-                className="mx-auto flex items-center gap-1.5 text-sm text-gray-500 transition-colors hover:text-gray-300"
-              >
-                <MessageSquare className="h-3.5 w-3.5" />
-                Add a comment (optional)
-              </button>
-            ) : (
-              <div className="space-y-3">
-                <Textarea
-                  value={feedback}
-                  onChange={(e) => setFeedback(e.target.value)}
-                  placeholder="Any suggestions?"
-                  rows={2}
-                  disabled={feedbackMutation.isPending}
-                />
+            <div className="space-y-3">
+              <Input
+                type="email"
+                value={userEmail}
+                onChange={(e) => setUserEmail(e.target.value)}
+                placeholder="Your email (optional)"
+                disabled={feedbackMutation.isPending}
+              />
+              <Textarea
+                value={feedback}
+                onChange={(e) => setFeedback(e.target.value)}
+                placeholder="Any suggestions? (optional)"
+                rows={2}
+                disabled={feedbackMutation.isPending}
+              />
+            </div>
+
+            <a
+              href="https://glitchgrab.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 rounded-lg border border-sky-900/60 bg-sky-950/40 p-3 transition-colors hover:border-sky-700 hover:bg-sky-950/70"
+            >
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-sky-900/60">
+                <Bug className="h-3.5 w-3.5 text-sky-300" />
               </div>
-            )}
+              <div className="flex-1">
+                <p className="flex items-center gap-1 text-xs font-semibold text-white">
+                  Try Glitchgrab
+                  <ArrowUpRight className="h-3 w-3 text-sky-300" />
+                </p>
+                <p className="text-xs text-gray-400">
+                  Turn screenshots into clean GitHub issues with AI.
+                </p>
+              </div>
+            </a>
 
             {feedbackMutation.isError && (
               <div className="rounded-lg border border-red-800 bg-red-950 p-3">
@@ -219,18 +229,14 @@ export default function FeedbackModal({
               >
                 Skip
               </Button>
-              {showComment && (
-                <Button
-                  type="button"
-                  onClick={handleSubmitWithComment}
-                  disabled={
-                    feedbackMutation.isPending || !selectedRating
-                  }
-                  className="flex-1"
-                >
-                  {feedbackMutation.isPending ? "Sending..." : "Send"}
-                </Button>
-              )}
+              <Button
+                type="button"
+                onClick={handleSubmit}
+                disabled={feedbackMutation.isPending || !selectedRating}
+                className="flex-1"
+              >
+                {feedbackMutation.isPending ? "Sending..." : "Send"}
+              </Button>
             </div>
           </>
         )}
