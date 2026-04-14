@@ -207,7 +207,7 @@ export async function POST(request: NextRequest) {
           }
         }
 
-        const iconBuffer = await processedImage.png().toBuffer();
+        const iconBuffer = await processedImage.png({ compressionLevel: 9 }).toBuffer();
 
         // Debug: Check final output
         const finalMetadata = await sharp(iconBuffer).metadata();
@@ -248,7 +248,7 @@ export async function POST(request: NextRequest) {
           fit: 'contain',
           background: { r: 255, g: 255, b: 255, alpha: 0 }
         })
-        .png()
+        .png({ compressionLevel: 9 })
         .toBuffer();
 
       const partialBase64 = partialBuffer.toString('base64');
@@ -299,7 +299,7 @@ export async function POST(request: NextRequest) {
             top: Math.floor((SPLASH_SPEC.height - logoHeight) / 2),
             left: Math.floor((SPLASH_SPEC.width - logoWidth) / 2),
           }])
-          .png()
+          .png({ compressionLevel: 9 })
           .toBuffer();
 
         const splashBase64 = splashBuffer.toString('base64');
