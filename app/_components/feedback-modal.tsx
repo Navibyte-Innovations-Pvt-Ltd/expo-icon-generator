@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { MessageSquare, Check } from "lucide-react";
+import { MessageSquare, Check, Bug, ArrowUpRight } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -124,13 +124,33 @@ export default function FeedbackModal({
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="max-w-sm">
         {feedbackMutation.isSuccess ? (
-          <div className="flex flex-col items-center py-8">
+          <div className="flex flex-col items-center py-6">
             <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-green-900/50">
               <Check className="h-7 w-7 text-green-400" />
             </div>
             <p className="text-lg font-semibold text-white">
               Thanks for your feedback!
             </p>
+            <a
+              href="https://glitchgrab.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 flex w-full items-start gap-3 rounded-lg border border-sky-900/60 bg-sky-950/40 p-3 transition-colors hover:border-sky-700 hover:bg-sky-950/70"
+            >
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-sky-900/60">
+                <Bug className="h-4 w-4 text-sky-300" />
+              </div>
+              <div className="flex-1">
+                <p className="flex items-center gap-1.5 text-sm font-semibold text-white">
+                  Try Glitchgrab
+                  <ArrowUpRight className="h-3.5 w-3.5 text-sky-300" />
+                </p>
+                <p className="text-xs text-gray-400">
+                  Turn screenshots & messy bug reports into clean GitHub issues
+                  with AI.
+                </p>
+              </div>
+            </a>
           </div>
         ) : (
           <>
