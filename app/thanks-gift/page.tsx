@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Gift, Heart, Coffee, Sparkles, ArrowLeft } from "lucide-react";
+import { Gift, Heart, Coffee, Sparkles, ArrowLeft, Bug, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SupportButton } from "./support-button";
 
@@ -141,6 +141,36 @@ export default function ThanksGiftPage() {
               this tool. Your support means the world to us! 🌟
             </p>
           </div>
+
+          {/* Check out Glitchgrab */}
+          <Link
+            href="https://glitchgrab.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-10 flex flex-col items-center gap-4 rounded-2xl border border-sky-900/60 bg-sky-950/30 p-8 text-center transition-colors hover:border-sky-700 hover:bg-sky-950/50 sm:flex-row sm:text-left"
+          >
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-sky-900/60">
+              <Bug className="h-7 w-7 text-sky-300" />
+            </div>
+            <div className="flex-1">
+              <div className="mb-1 flex items-center justify-center gap-2 sm:justify-start">
+                <h3 className="text-xl font-bold text-white">
+                  Check out Glitchgrab
+                </h3>
+                <span className="rounded-md bg-sky-900/60 px-2 py-0.5 text-[10px] font-semibold text-sky-300 uppercase">
+                  Also by us
+                </span>
+              </div>
+              <p className="text-sm text-gray-400">
+                Turn handwritten notes, screenshots, and production errors into
+                structured GitHub issues with AI. Built for Next.js teams.
+              </p>
+            </div>
+            <div className="flex items-center gap-1.5 text-sm font-semibold text-sky-300 group-hover:text-sky-200">
+              Try it free
+              <ArrowUpRight className="h-4 w-4" />
+            </div>
+          </Link>
 
           {/* Alternative Support */}
           <div className="mt-10 text-center">
