@@ -191,6 +191,26 @@ export default function FeedbackModal({
               />
             </div>
 
+            <a
+              href="https://glitchgrab.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 rounded-lg border border-sky-900/60 bg-sky-950/40 p-3 transition-colors hover:border-sky-700 hover:bg-sky-950/70"
+            >
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-sky-900/60">
+                <Bug className="h-3.5 w-3.5 text-sky-300" />
+              </div>
+              <div className="flex-1">
+                <p className="flex items-center gap-1 text-xs font-semibold text-white">
+                  Try Glitchgrab
+                  <ArrowUpRight className="h-3 w-3 text-sky-300" />
+                </p>
+                <p className="text-xs text-gray-400">
+                  Turn screenshots into clean GitHub issues with AI.
+                </p>
+              </div>
+            </a>
+
             {feedbackMutation.isError && (
               <div className="rounded-lg border border-red-800 bg-red-950 p-3">
                 <p className="text-sm text-red-400">
