@@ -1,3 +1,17 @@
+# [1.9.0](https://github.com/WebNaresh/expo-icon-generator/compare/v1.8.0...v1.9.0) (2026-04-14)
+
+
+### Bug Fixes
+
+* **feedback:** add email input and make comment field always visible ([aea9604](https://github.com/WebNaresh/expo-icon-generator/commit/aea9604dc847c1e3ea6803c865c385d7ed587ca8))
+
+
+### Features
+
+* **api:** send glitchgrab waitlist email when user provides email ([57ffc5a](https://github.com/WebNaresh/expo-icon-generator/commit/57ffc5ab8c94464fd2b90a1096a01c8482754e5e))
+* **feedback:** add glitchgrab marketing card in modal form ([b00af2d](https://github.com/WebNaresh/expo-icon-generator/commit/b00af2d6705fcbdafbb6a46bfd201eacb9e4725a))
+* **ui:** add Input component for form fields ([32797e7](https://github.com/WebNaresh/expo-icon-generator/commit/32797e76884eb0b8a6179cbeb2c61cfd4e3109de))
+
 # [1.8.0](https://github.com/WebNaresh/expo-icon-generator/compare/v1.7.0...v1.8.0) (2026-04-14)
 
 
