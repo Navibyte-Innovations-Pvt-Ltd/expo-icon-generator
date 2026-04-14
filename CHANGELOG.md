@@ -1,3 +1,12 @@
+# [1.10.0](https://github.com/WebNaresh/expo-icon-generator/compare/v1.9.0...v1.10.0) (2026-04-14)
+
+
+### Features
+
+* **hero:** emphasize 'expo assets generator' and all-assets messaging ([5003905](https://github.com/WebNaresh/expo-icon-generator/commit/5003905e93388534b0daf34925f477ea1a5b4754))
+* **layout:** make 'expo assets generator' the primary keyword ([4e756d9](https://github.com/WebNaresh/expo-icon-generator/commit/4e756d92abe9d148128525f0154006fc11458f91))
+* **structured-data:** expand JSON-LD schema for expo assets keyword cluster ([c908837](https://github.com/WebNaresh/expo-icon-generator/commit/c9088374b88b4a4f122d87bc624be3e50825d745))
+
 # [1.9.0](https://github.com/WebNaresh/expo-icon-generator/compare/v1.8.0...v1.9.0) (2026-04-14)
 
 
