@@ -13,6 +13,162 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
     {
+        slug: "how-to-generate-all-expo-assets",
+        title: "How to Generate All Expo Assets (Icons, Splash Screens, Adaptive Icons) in One Tool",
+        description:
+            "Learn how to generate every required expo asset — icons, adaptive icons, splash screens, and favicons — from a single image using our free expo assets generator. No manual resizing needed.",
+        content: `
+# How to Generate All Expo Assets (Icons, Splash Screens, Adaptive Icons) in One Tool
+
+When building an Expo or React Native app, you need more than just an app icon. The official [Expo documentation on assets](https://docs.expo.dev/develop/user-interface/app-icons/) outlines a comprehensive set of required assets: a general icon, an Android adaptive icon, a splash screen, and a web favicon. Generating all of these manually is tedious and error-prone. This guide shows you how to use an expo assets generator to produce every required asset from a single source image.
+
+## What Are Expo Assets?
+
+Expo assets are the visual files your app needs to display correctly on every platform. The core set required by the Expo framework includes:
+
+| Asset | File | Size | Platform |
+|-------|------|------|----------|
+| App Icon | icon.png | 1024×1024 | iOS, Android (legacy), General |
+| Adaptive Icon (foreground) | adaptive-icon.png | 1024×1024 | Android 8.0+ |
+| Splash Screen | splash.png | 1284×2778 | iOS, Android |
+| Splash Icon | splash-icon.png | 200×200 | iOS, Android |
+| Favicon | favicon.png | 48×48 | Web |
+
+These are referenced in your \`app.json\` (or \`app.config.js\`) like this:
+
+\`\`\`json
+{
+  "expo": {
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFFFF"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
+\`\`\`
+
+## Why Use an Expo Assets Generator?
+
+Generating expo assets manually requires:
+- Resizing your source image to each exact dimension
+- Exporting in the correct format (PNG, no alpha for some iOS sizes)
+- Matching the background color across adaptive icon and splash screen
+- Updating \`app.json\` paths and color values
+
+A dedicated expo assets generator handles all of this automatically. You upload one image, choose a background color, and download a ZIP with every required file plus a pre-configured \`app.json\`.
+
+## Step-by-Step: Generate All Expo Assets in One Tool
+
+### Step 1: Prepare Your Source Image
+
+Start with a high-resolution square image (at least 1024×1024px). PNG format with transparency is ideal — the tool will composite your logo onto the background color you choose.
+
+**Tips for a great source image:**
+- Use a simple, recognizable design that reads well at small sizes
+- Keep important visual elements in the center 60% of the canvas (the "safe zone" for Android adaptive icons)
+- Transparent background gives you the most flexibility
+
+### Step 2: Upload to the Expo Assets Generator
+
+Visit [expo-assets-generator.vercel.app](https://expo-assets-generator.vercel.app) and drag-and-drop your source image into the upload area. The tool accepts PNG, JPG, and SVG files up to 10MB.
+
+### Step 3: Choose Your Background Color
+
+The expo assets generator will analyze your image and suggest background colors that complement it. This background color is used for:
+- The Android adaptive icon background layer
+- The splash screen background (if enabled)
+- The \`backgroundColor\` field in your \`app.json\`
+
+### Step 4: Enable Splash Screen (Optional)
+
+Toggle "Generate Splash Screen" to also create \`splash.png\` and \`splash-icon.png\`. You can choose a separate background color for the splash screen if it differs from your icon background.
+
+### Step 5: Generate and Download
+
+Click "Generate Assets." The tool processes your image with [Sharp](https://sharp.pixelplumbing.com/) — a high-performance Node.js image processing library — to produce pixel-perfect outputs at every required size.
+
+Download the ZIP and you'll find:
+\`\`\`
+assets/
+├── icon.png           (1024×1024)
+├── adaptive-icon.png  (1024×1024)
+├── splash.png         (1284×2778)
+├── splash-icon.png    (200×200)
+├── favicon.png        (48×48)
+app.json               (pre-configured)
+\`\`\`
+
+### Step 6: Drop the Assets Into Your Project
+
+Copy the generated files into your Expo project's \`assets/\` directory. If you use the generated \`app.json\`, it already has the correct paths and background colors filled in.
+
+\`\`\`bash
+# Copy generated assets to your project
+cp -r generated/assets/ your-expo-project/assets/
+cp generated/app.json your-expo-project/app.json
+\`\`\`
+
+Then run \`npx expo start\` and your app will display the new icons and splash screen immediately.
+
+## Verifying Your Expo Assets
+
+After adding your assets, verify them with:
+
+\`\`\`bash
+npx expo-doctor
+\`\`\`
+
+This command checks that all asset paths in \`app.json\` resolve to real files and that sizes match platform requirements.
+
+### Checking Adaptive Icons on Android
+
+To preview how your adaptive icon looks with different launcher shapes, use:
+
+\`\`\`bash
+npx expo prebuild --platform android
+\`\`\`
+
+Then open the Android project in Android Studio and use the Image Asset Studio to preview the adaptive icon with circular, square, and squircle masks.
+
+## Common Expo Assets Mistakes
+
+### 1. Wrong Source Image Size
+Using a source image smaller than 1024×1024px leads to blurry icons when upscaled. Always start with at least 1024×1024px.
+
+### 2. Mismatched Background Colors
+If your adaptive icon \`backgroundColor\` in \`app.json\` doesn't match your splash screen \`backgroundColor\`, the transition between splash and app looks jarring. Use the same color or complementary colors.
+
+### 3. Important Content Outside the Safe Zone
+Android adaptive icons are masked to various shapes (circle, rounded square, etc.). Keep your logo's important elements within the inner 66% of the image to ensure they're never cropped.
+
+### 4. Forgetting the Web Favicon
+The \`web.favicon\` field is easy to overlook. Without it, your Expo web build will show a generic browser icon in tabs and bookmarks.
+
+## Summary
+
+Generating all expo assets — icons, adaptive icons, splash screens, and favicons — no longer requires manual resizing or multiple tools. An expo assets generator handles the entire process from a single source image, including generating the \`app.json\` configuration. Follow the Expo documentation's asset requirements, keep your source image high-resolution, and let the generator do the work.
+
+Ready to generate your expo assets? Use the free **Expo Assets Generator** at the top of this page — upload one image and download everything you need.
+    `,
+        author: "Naresh Bhosale",
+        publishedAt: "2024-06-01",
+        readTime: "10 min read",
+        category: "Tutorial",
+        tags: ["expo", "react-native", "assets", "icons", "splash-screen", "adaptive-icon"],
+        featured: true,
+    },
+    {
         slug: "complete-guide-expo-icon-generation",
         title: "The Complete Guide to Expo Icon Generation in 2024",
         description:
