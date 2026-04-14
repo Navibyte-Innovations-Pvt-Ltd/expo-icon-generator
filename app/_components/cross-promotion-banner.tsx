@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ExternalLink, QrCode, MonitorSmartphone } from "lucide-react";
+import { ExternalLink, QrCode, MonitorSmartphone, Bug } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,6 +11,15 @@ import {
 import { Badge } from "@/components/ui/badge";
 
 const PRODUCTS = [
+  {
+    icon: Bug,
+    title: "Glitchgrab — AI Bug Reports",
+    description: "Turn messy bug reports into structured GitHub issues",
+    detail:
+      "Drop a screenshot, note, or production error — Glitchgrab uses AI to generate a clean GitHub issue with title, labels, and severity. Built for Next.js teams.",
+    href: "https://glitchgrab.dev/",
+    cta: "Try Glitchgrab",
+  },
   {
     icon: QrCode,
     title: "Free QR Code Generator",
@@ -33,8 +42,8 @@ const PRODUCTS = [
 
 export default function CrossPromotionBanner() {
   return (
-    <div className="mx-auto max-w-5xl">
-      <div className="grid gap-4 sm:grid-cols-2">
+    <div className="mx-auto max-w-6xl">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {PRODUCTS.map((product) => (
           <Card
             key={product.href}
