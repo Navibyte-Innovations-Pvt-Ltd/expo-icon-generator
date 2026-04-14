@@ -454,8 +454,15 @@ This project is open source and available under the [MIT License](LICENSE).
 - **Community**: Thanks to all Expo developers and contributors
 - **Technologies**: Built with amazing open source tools
 
+## 🧰 Also by us — Glitchgrab
+
+Building a Next.js or React Native app and tired of chasing messy bug reports? **[Glitchgrab](https://glitchgrab.dev/)** turns handwritten notes, screenshots, and production errors into structured GitHub issues using AI. Drop-in SDK for Next.js, mobile app, and Claude Desktop MCP server.
+
+👉 [Try Glitchgrab free →](https://glitchgrab.dev/)
+
 ## 🔗 Related Resources
 
+- **Glitchgrab**: [https://glitchgrab.dev/](https://glitchgrab.dev/) — AI bug reports → GitHub issues
 - **Expo Documentation**: [https://docs.expo.dev/](https://docs.expo.dev/)
 - **React Native Icons**: [https://reactnative.dev/docs/images](https://reactnative.dev/docs/images)
 - **Sharp Documentation**: [https://sharp.pixelplumbing.com/](https://sharp.pixelplumbing.com/)
