@@ -1,3 +1,14 @@
+# [1.8.0](https://github.com/WebNaresh/expo-icon-generator/compare/v1.7.0...v1.8.0) (2026-04-14)
+
+
+### Features
+
+* **feedback:** add Glitchgrab callout in success state ([425b542](https://github.com/WebNaresh/expo-icon-generator/commit/425b542d95bf3c5239dcb026bfb9ad451637356e))
+* **feedback:** add Glitchgrab signature to feedback email ([d961aac](https://github.com/WebNaresh/expo-icon-generator/commit/d961aac2fbd93673e1f2baf8c44a276165c0681f))
+* **footer:** link to Glitchgrab in products section ([f4c7251](https://github.com/WebNaresh/expo-icon-generator/commit/f4c7251a51f1427725fb0d2d7922eaf08f19afe2))
+* **home:** add Glitchgrab to cross-promotion banner ([8b1f66a](https://github.com/WebNaresh/expo-icon-generator/commit/8b1f66a00ed30a7515ea28554c331b7c565a9c38))
+* **thanks:** add Glitchgrab promo card on support page ([7a15c6e](https://github.com/WebNaresh/expo-icon-generator/commit/7a15c6e527bad70db46c624b883fb07e1224c07b))
+
 # [1.7.0](https://github.com/WebNaresh/expo-icon-generator/compare/v1.6.0...v1.7.0) (2026-03-06)
 
 
