@@ -1,0 +1,79 @@
+name: Claude Auto-Fix Issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  auto-fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Bun & install
+        uses: WebNaresh/bun-setup-action@v1
+        with:
+          bun-version: '1.3.7'
+
+      - name: Run Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          additional_permissions: |
+            actions: read
+          claude_args: |
+            --permission-mode acceptEdits
+            --allowedTools "Bash,Edit,Write,Read,Glob,Grep,WebFetch"
+          prompt: |
+            Issue #${{ github.event.issue.number }} was just opened.
+
+            Title: ${{ github.event.issue.title }}
+            Author: ${{ github.event.issue.user.login }}
+            Assignees: ${{ join(github.event.issue.assignees.*.login, ',') }}
+
+            Body:
+            ${{ github.event.issue.body }}
+
+            STEP 1 — TRIAGE (mandatory, do this FIRST):
+            Decide whether this issue is a "simple bug fix" that you should auto-fix, or a "broader change" that needs human intervention. Err on the side of bailing out — if in doubt, do NOT open a PR.
+
+            Auto-fix ONLY if ALL of these are true:
+            - It is a clearly described bug with a reproducible symptom, a copy/text change, or a small UI tweak.
+            - The fix is confined to a small number of files and a localized code region.
+            - It requires NO database schema changes, NO migrations, and NO changes to `.env` / env var names.
+            - It requires NO new API route, NO new module, NO new page, and NO new dependency (no changes to `package.json` dependencies).
+            - It requires NO changes to auth, billing/payments, CI workflows (`.github/`), or build/config files.
+            - It does NOT touch more than ~5 files or ~150 lines total.
+            - The expected behavior is unambiguous from the issue body — no design decisions, no product judgment calls required.
+
+            DO NOT auto-fix (bail out) if ANY of these are true:
+            - Schema / migration / database structure changes are implied.
+            - It is a feature request, refactor, architectural change, or "broader" rework.
+            - It spans multiple packages or requires cross-cutting changes.
+            - It touches auth, payments, subscriptions, token/credential handling, or security-sensitive logic.
+            - The issue is vague, ambiguous, lacks repro steps, or needs clarification.
+            - Fixing it safely would require human product/design judgment.
+
+            If you decide to bail out: post ONE comment on the issue explaining that this looks like a broader change needing human intervention, briefly state why (schema change / feature / ambiguous / etc.), assign the issue to the repo owner with `gh issue edit ${{ github.event.issue.number }} --add-assignee ${{ github.repository_owner }}`, and STOP. Do NOT create a branch, do NOT open a PR.
+
+            STEP 2 — FIX (only if triage passed):
+            1. Investigate the issue. Read relevant code and confirm the bug before making changes.
+            2. Create and switch to a new branch named `claude/issue-${{ github.event.issue.number }}` based on the default branch.
+            3. Implement the fix. Follow existing code style and patterns in the repo.
+            4. Run the project's build/validate command (bun run build). If anything fails, fix it before committing.
+            5. Commit each changed file individually using conventional commit format (e.g. `fix(scope): ...`). Do NOT add any Co-Authored-By or Claude attribution lines.
+            6. Push the branch to origin.
+            7. Open a pull request targeting the default branch using `gh pr create`. Include the line `Closes #${{ github.event.issue.number }}` in the PR body so GitHub auto-closes the issue when the PR merges. Pass `--assignee` with the issue's assignees (comma-separated). If the issue has no assignees, use the issue author `${{ github.event.issue.user.login }}` as the assignee.
+            8. Post a single comment on the issue linking to the new PR.
+            9. NEVER run `gh pr merge` — the repo owner handles merging.
+
+            If at any point during the fix you discover the change is broader than the triage suggested (e.g. you need a schema change, a new dependency, or design decisions), STOP, discard the branch, post a comment on the issue explaining this needs human intervention, and assign the issue to the repo owner with `gh issue edit ${{ github.event.issue.number }} --add-assignee ${{ github.repository_owner }}`.
