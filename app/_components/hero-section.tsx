@@ -22,11 +22,16 @@ export default function HeroSection() {
       <div className="space-y-3">
         <h1 className="text-5xl font-bold tracking-tight text-white lg:text-6xl">
           One image.
-          <span className="block text-gray-500">Every icon.</span>
+          <span className="block text-gray-500">Every asset.</span>
         </h1>
         <p className="max-w-sm text-base leading-relaxed text-gray-400">
-          Drop your logo and get all platform-specific assets for your Expo app
-          — icons, adaptive icons, splash screens, and app.json — in seconds.
+          The free{" "}
+          <strong className="font-semibold text-gray-300">
+            expo assets generator
+          </strong>{" "}
+          for React Native apps. Drop your logo and get all required expo assets
+          — icons, adaptive icons, splash screens, favicons, and app.json — in
+          seconds.
         </p>
       </div>
 
