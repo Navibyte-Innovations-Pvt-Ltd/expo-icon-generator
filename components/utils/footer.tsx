@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ExternalLink, Github, Linkedin, Globe, Mail, Chrome } from "lucide-react";
+import { ExternalLink, Github, Linkedin, Globe, Mail, Chrome, Bug } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -130,6 +130,24 @@ export function Footer() {
                   </p>
                   <p className="text-[10px] text-gray-500">Current tool</p>
                 </div>
+              </li>
+              <li>
+                <Link
+                  href="https://glitchgrab.dev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between rounded-lg border border-gray-800 p-2.5 transition-colors hover:border-gray-700 hover:bg-gray-900"
+                >
+                  <div>
+                    <p className="text-xs font-medium text-gray-300 group-hover:text-white">
+                      Glitchgrab
+                    </p>
+                    <p className="text-[10px] text-gray-500">
+                      AI bug reports → GitHub
+                    </p>
+                  </div>
+                  <Bug className="h-3 w-3 text-gray-600 group-hover:text-gray-400" />
+                </Link>
               </li>
               <li>
                 <Link
