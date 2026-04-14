@@ -20,19 +20,26 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     default:
-      "Expo Assets Generator - Free Icon Generator for React Native Apps | Expo Icons",
+      "Expo Assets Generator - Generate All Expo Assets: Icons, Splash Screens & Adaptive Icons",
     template: "%s | Expo Assets Generator",
   },
   description:
-    "Free Expo Assets Generator and Icon Generator for React Native apps. Generate iOS, Android, and web icons from one image. Create adaptive icons, app store icons, and all expo icon sizes automatically. Perfect for expo app icon generation, react native icon generator needs, and app development workflow.",
+    "Free Expo Assets Generator: generate all required expo assets from one image — iOS icons, Android adaptive icons, splash screens, favicons, and app.json config. The fastest way to generate expo assets for React Native apps. No signup required.",
   keywords: [
-    // High-performing keywords from Google Search Console (prioritized by CTR and impressions)
+    // Primary 'expo assets' keyword cluster (highest priority)
     "expo assets generator",
+    "expo asset generator",
+    "generate expo assets",
+    "expo assets tool",
+    "expo all assets generator",
+    "expo assets creator",
+    "expo generate assets",
+    "expo assets automation",
+    // Icon-related keywords
     "expo icon generator",
     "expo app icon generator",
     "expo icons generator",
     "expo adaptive icon generator",
-    "expo asset generator",
     "expo icons",
     "expo icon",
     "expo app icon",
@@ -88,6 +95,11 @@ export const metadata: Metadata = {
     "ios icon generator",
     "android and ios app icon generator",
     "ios app icons generator",
+    // Splash screen & other asset keywords
+    "expo splash screen",
+    "expo splash screen generator",
+    "react native splash screen generator",
+    "expo app splash screen",
     // Additional technical keywords
     "expo icon automation",
     "react native development tools",
@@ -102,9 +114,9 @@ export const metadata: Metadata = {
     "react native toolchain",
     "expo workflow optimization",
   ],
-  authors: [{ name: "Expo Icon Generator Team" }],
-  creator: "Expo Icon Generator",
-  publisher: "Expo Icon Generator",
+  authors: [{ name: "Expo Assets Generator Team" }],
+  creator: "Expo Assets Generator",
+  publisher: "Expo Assets Generator",
   formatDetection: {
     email: false,
     address: false,
@@ -116,9 +128,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Expo Assets Generator - Free Icon Generator for React Native Apps | Expo Icons",
+      "Expo Assets Generator - Generate All Expo Assets: Icons, Splash Screens & Adaptive Icons",
     description:
-      "Free Expo Assets Generator and Icon Generator for React Native apps. Generate iOS, Android, and web icons from one image. Create adaptive icons, app store icons, and all expo icon sizes automatically.",
+      "Free Expo Assets Generator: generate all required expo assets from one image — iOS icons, Android adaptive icons, splash screens, favicons, and app.json config. No signup required.",
     url: "https://expo-assets-generator.vercel.app",
     siteName: "Expo Assets Generator",
     images: [
@@ -142,9 +154,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Expo Assets Generator - Free Icon Generator for React Native Apps",
+    title: "Expo Assets Generator - Generate All Expo Assets in One Click",
     description:
-      "Free Expo Assets Generator and Icon Generator for React Native apps. Generate iOS, Android, and web icons from one image. Create adaptive icons automatically.",
+      "Free Expo Assets Generator for React Native apps. Generate all expo assets — iOS icons, Android adaptive icons, splash screens, and favicons — from one image.",
     images: ["https://expo-assets-generator.vercel.app/opengraph-image.png"],
     creator: "@expo_icons",
     site: "@expo_icons",
