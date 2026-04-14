@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/WebNaresh/expo-icon-generator/compare/v1.10.0...v1.10.1) (2026-04-14)
+
+
+### Bug Fixes
+
+* **generate-icons:** use maximum PNG compression to reduce response payload size ([097b04f](https://github.com/WebNaresh/expo-icon-generator/commit/097b04f5b20af69d68049d45b25f50ab49ce2032))
+
 # [1.10.0](https://github.com/WebNaresh/expo-icon-generator/compare/v1.9.0...v1.10.0) (2026-04-14)
 
 
