@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Check, Bug, ArrowUpRight } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -59,14 +58,12 @@ export default function FeedbackModal({
   const [feedback, setFeedback] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [selectedRating, setSelectedRating] = useState<Rating | null>(null);
-  const router = useRouter();
 
   const feedbackMutation = useMutation({
     mutationFn: submitFeedback,
     onSuccess: () => {
       setTimeout(() => {
         resetAndClose();
-        router.push("/thanks-gift");
       }, 1500);
     },
     onError: (error) => {
