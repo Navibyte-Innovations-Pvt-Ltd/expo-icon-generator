@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
+import { Bug } from "lucide-react";
 import {
   HeroSection,
   FileUploadArea,
@@ -50,6 +51,27 @@ function buildAppJson(
     },
   };
   return JSON.stringify(config, null, 2);
+}
+
+function ReportBugSection() {
+  const handleClick = () => {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("glitchgrab:open-report"));
+    }
+  };
+  return (
+    <div className="mt-16 flex flex-col items-center gap-3 border-t border-gray-800 pt-12 text-center">
+      <p className="text-sm text-gray-500">Found something broken?</p>
+      <button
+        type="button"
+        onClick={handleClick}
+        className="flex items-center gap-2 rounded-full border border-gray-700 bg-gray-900 px-5 py-2.5 text-sm font-medium text-gray-300 transition-colors hover:border-gray-600 hover:bg-gray-800 hover:text-white"
+      >
+        <Bug className="h-4 w-4 text-sky-400" />
+        Report a Bug
+      </button>
+    </div>
+  );
 }
 
 export default function HomePage() {
@@ -239,6 +261,7 @@ export default function HomePage() {
         <ComprehensiveGuideSection />
         <TechnicalSpecificationsSection />
         <AppStoreOptimizationSection />
+        <ReportBugSection />
       </div>
 
       <FeedbackModal
