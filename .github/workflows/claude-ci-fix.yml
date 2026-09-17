@@ -1,0 +1,22 @@
+name: Claude CI Fix
+
+# When CI finishes red on a `claude/*` branch, the bot picks the PR back up and
+# fixes it — nobody has to comment "@claude the checks are failing".
+# Names below cover every PR-check workflow in the org; names a repo does not
+# have are ignored. Only fires from the default branch.
+
+on:
+  workflow_run:
+    workflows: [ci, CI, "Build & Validate", Lint, "PR Check", "Cross-browser smoke"]
+    types: [completed]
+
+jobs:
+  ci-fix:
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read
+    uses: Navibyte-Innovations-Pvt-Ltd/.github/.github/workflows/claude-ci-fix-reusable.yml@main
+    secrets: inherit
